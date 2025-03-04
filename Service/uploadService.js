@@ -3,8 +3,6 @@ const s3 = require('../Config/awsConfig');
 const db = require('../Config/dbConfig');
 const { v4: uuidv4 } = require('uuid');
 
-
-//Envia a imagem para AWS S3 e salva o URL no MySQL.
 const uploadFile = (imagem, userId) => {
   return new Promise(async (resolve, reject) => {
     const filePath = imagem.path;
@@ -26,7 +24,6 @@ const uploadFile = (imagem, userId) => {
       } else {
         console.log('Arquivo carregado com sucesso:', data.Location);
 
-        // Salvar no banco
         try {
           await db.execute('INSERT INTO imagens (userId, fileUrl) VALUES (?, ?)', [userId, data.Location]);
           resolve(data.Location);
@@ -40,7 +37,6 @@ const uploadFile = (imagem, userId) => {
 };
 
 
-//Busca imagens no banco pelo userId.
 const getUserImages = async (userId) => {
   try {
     const [rows] = await db.execute('SELECT fileUrl FROM imagens WHERE userId = ?', [userId]);

@@ -1,7 +1,5 @@
 const uploadService = require('../Service/uploadService');
 
-
-//POST recebe e armazena a imagem no AWS S3 e no banco de dados
 const uploadHandler = async (req, res) => {
   const { userId } = req.body;
   const imagem = req.file;
@@ -18,7 +16,6 @@ const uploadHandler = async (req, res) => {
   }
 };
 
-//GET para buscar as imagens pelo userId
 const getUserImagesHandler = async (req, res) => {
   const { userId } = req.params;
 
