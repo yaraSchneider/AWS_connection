@@ -7,7 +7,6 @@ const uploadHandler = async (req, res) => {
   if (!imagem) {
     return res.status(400).json({ message: 'Nenhuma imagem foi enviada!' });
   }
-//hhhhhhhhhhhhhhhh
   try {
     const fileUrl = await uploadService.uploadFile(imagem, userId);
     res.json({ message: 'Upload realizado com sucesso!', fileUrl });
